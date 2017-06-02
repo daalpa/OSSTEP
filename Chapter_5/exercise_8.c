@@ -11,6 +11,7 @@ to the input end of the pipe.
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 void reader(int file_no) 
 {
@@ -46,6 +47,10 @@ int main(void)
         } else if(pid_b == 0) {
             writer(file_no[1]);
         }
+		else {
+			wait(NULL);
+			wait(NULL);
+		}
     }    
     return 0;
 }

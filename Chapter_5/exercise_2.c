@@ -8,6 +8,7 @@ outputs.
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <sys/wait.h>
 
 int main() {
     close(STDOUT_FILENO); //close STDOUT, printf will printf will write to the file with the smallest file descriptor
@@ -15,7 +16,7 @@ int main() {
                          /*create    write only truncate  user read and write permission*/
     open("exercise_2.out", O_CREAT | O_WRONLY | O_TRUNC , S_IRUSR | S_IWUSR); 
     //creat("exercise_2.out",  S_IRUSR | S_IWUSR); // is equivalent to the previous line
-    const int NCHAR = 8000;
+    const int NCHAR = 10000;
     pid_t rc = fork();
     if(rc < 0) { //error
         perror("fork failed\n");
@@ -34,6 +35,7 @@ int main() {
         for(int i = 0; i < NCHAR; i++) {
             printf("p");
         }
+		wait(NULL);
     }
 
     return 0;

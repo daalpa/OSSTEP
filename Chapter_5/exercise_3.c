@@ -7,6 +7,7 @@ The system function sleep is used to put the parent to sleep for 1 second.
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main() {
     pid_t child_id = fork();
@@ -22,6 +23,7 @@ int main() {
     else { //parent process
         sleep(1);
         printf("Good bye!\n");
+		wait(NULL);
     }
     return 0;
 }
