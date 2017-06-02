@@ -7,7 +7,6 @@ The exercise asks us to do it from a child process but it seems to make no diffe
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/wait.h>
 
 int main() {
     close(STDOUT_FILENO);
